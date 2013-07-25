@@ -1,0 +1,63 @@
+
+Architecture MVC par yamisaaf 
+remerciement a  : 
+V4vx & Nicky31 & ryuuke 05
+--------------------------------------/
+-pour la configuration general de l'architecture veuillez allez config/config.php
+-pour ajouter une libs externe veuillez l'extraire sur le dossier libs
+-si vous étes en fase de devloppement laisser debug en true sinon changer en false //allez sur index.php pour modifier
+fonctionaliter de larchitecture : 
+-gere le model , view , controller
+-gestion de l'output (view,layout...) //en peux changer le layout par default
+-gestion de l'acces a la databse (le CRUD pas encore terminer)
+-gestion de cache complet
+-gestion de session 
+-gestion des routes
+-gestion des load 
+-gestion de l'autoload // vous pouvez facilement charger vos libraire externe veuillez allez sur la page de configuration
+-une gestion de debug complet permet de regarder tous les debugage des class , cache , libs...
+-librairie par defaut : 
+*cache
+*session
+*cryptage
+///petit Documentation///
+-pour passer les view :
+parent::output()->view('fichierdevue',array('variable a passer'=>'contenu'));
+-pour charger un model : 
+parent::model('nomdevotrefichier de model')->functiondelapagemodel();
+-gestion de cache : 
+if(!parent::cache()->startCache('lenomdevotrecache')){
+
+contenu
+}
+parent::cache()->endCache();
+-gestion de session : 
+parent::session()->write('id','yamisaaf'); //ecrire une session [premierchamp le key de la session][deuxiéme sa valeur]
+parent::session()->read('id');//lire une session
+parent::session()->is_login(); //verifie si vous étes connecter a partir de la session id
+parent::session()-destroy();//detruit tous les session
+- cryptage :
+une trés petit classe qui permet crypte une chaine
+---------------------------------------------------------------------/
+-acceder a une classe liberament : 
+Base::get()->load->app('nomdelaclasse')->lafunctiondelaclassquevousavezappeler();
+Class disponible pour étre appeler : 
+**output,session,route,controller,model,cache,cryptage,loader**
+-pour utiliser une libs externe : 
+comme en l'as dis en haut l'extraire dans le dossier libs et l'écrire dans le fichier config 
+Base::get()->load->app('lenomdevotrelibrairieexterne')->lafunctiondelalibraire();
+  Ou
+acceder a system/mvc/controller.php
+
+ajouter une n'ouvelle function ayant le nom de votre libs
+par exemple: 
+//en ajoute cette funcion dans : system/mvc/controller.php
+public function captcha(){
+
+return  Base::get()->load->app('lenomdevotrelibrairieexterne') ;
+ }
+donc maitenant en peux depuis t'as pas de controller faire
+parent::captcha()->votrefunction();
+/*gestion des inputs bientot*/
+
+pour me contacter : skype => yamisaaf le 
